@@ -1,0 +1,130 @@
+# MATLAB/Simulink Specific Files
+*.asv
+*.slxc
+*.slx.autosave
+*.slx.original
+*.mdl.autosave
+*.mdl.original
+
+# Simulink Cache and Code Generation
+slprj/
+sccprj/
+*.slxp
+*.slxc
+*.mexw64
+*.mexw32
+*.mexa64
+*.mexmaci64
+*.mex
+
+# MATLAB Autosave and Temporary Files
+*.m~
+*.mat~
+octave-workspace
+
+# Code Generation
+codegen/
+ert_main.c
+*.tmw
+
+# Model Advisor and Reports
+ModelAdvisorData/
+slprj/
+*.rpt
+
+# Stateflow Generated Files
+sfprj/
+
+# Simulink Project Files (if not needed to be tracked)
+*.prj.bak
+*_sfun.mexw64
+*_sfun.mexa64
+
+# Performance and Profiling Data
+*.ptx
+*.cubin
+profile_results/
+
+# Data Dictionaries (if generated)
+*.sldd.autosave
+
+# Build Artifacts
+build/
+*.o
+*.obj
+*.lib
+*.a
+*.so
+*.dll
+*.exe
+
+# Results and Output (uncomment if you don't want to track these)
+# results/
+# plots/
+# *.fig
+# *.png
+# *.jpg
+# *.pdf
+
+# MATLAB Package
+*.mltbx
+*.mlappinstall
+*.mlpkginstall
+
+# Windows System Files
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux System Files
+*~
+.directory
+.Trash-*
+
+# Logs
+*.log
+logs/
+
+# Backup Files
+*.bak
+*.backup
+*~
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python (if used for any utilities)
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# Documentation Build
+docs/_build/
+docs/.doctrees/
+
+# Coverage and Testing
+coverage/
+*.coverage
+htmlcov/
+
+# Git merge files
+*.orig

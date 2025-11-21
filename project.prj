@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MATLABProject xmlns="http://www.mathworks.com/MATLABProjectFile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
+    <configuration>
+        <prj.Name>EV Controller Project</prj.Name>
+        <prj.Description>MATLAB/Simulink implementation of an EV controller with motor control, cruise control, and adaptive cruise control systems</prj.Description>
+        <prj.RootPath>$PROJECT_ROOT$</prj.RootPath>
+        <prj.ProjectPath>$PROJECT_ROOT$</prj.ProjectPath>
+        <prj.StartupFolder>$PROJECT_ROOT$</prj.StartupFolder>
+        <prj.StartupFile>setup_project.m</prj.StartupFile>
+        <prj.ShutdownFolder>$PROJECT_ROOT$</prj.ShutdownFolder>
+        <prj.ShutdownFile></prj.ShutdownFile>
+        <prj.EnableProjectPath>true</prj.EnableProjectPath>
+        <prj.DependencyGraph>true</prj.DependencyGraph>
+        <prj.DependencyGraphOnOpen>false</prj.DependencyGraphOnOpen>
+        <prj.UsesGit>true</prj.UsesGit>
+        <prj.ProjectID>a1b2c3d4-e5f6-7890-abcd-ef1234567890</prj.ProjectID>
+    </configuration>
+    <folders>
+        <folder name="docs">
+            <path>docs</path>
+        </folder>
+        <folder name="matlab">
+            <path>matlab</path>
+        </folder>
+        <folder name="matlab/scripts">
+            <path>matlab/scripts</path>
+        </folder>
+        <folder name="matlab/scripts/initialization">
+            <path>matlab/scripts/initialization</path>
+        </folder>
+        <folder name="matlab/scripts/analysis">
+            <path>matlab/scripts/analysis</path>
+        </folder>
+        <folder name="matlab/scripts/utilities">
+            <path>matlab/scripts/utilities</path>
+        </folder>
+        <folder name="matlab/functions">
+            <path>matlab/functions</path>
+        </folder>
+        <folder name="matlab/functions/motor_control">
+            <path>matlab/functions/motor_control</path>
+        </folder>
+        <folder name="matlab/functions/acc_logic">
+            <path>matlab/functions/acc_logic</path>
+        </folder>
+        <folder name="matlab/functions/vehicle_dynamics">
+            <path>matlab/functions/vehicle_dynamics</path>
+        </folder>
+        <folder name="matlab/data">
+            <path>matlab/data</path>
+        </folder>
+        <folder name="simulink">
+            <path>simulink</path>
+        </folder>
+        <folder name="simulink/models">
+            <path>simulink/models</path>
+        </folder>
+        <folder name="simulink/models/subsystems">
+            <path>simulink/models/subsystems</path>
+        </folder>
+        <folder name="results">
+            <path>results</path>
+        </folder>
+        <folder name="config">
+            <path>config</path>
+        </folder>
+    </folders>
+    <references>
+        <reference>
+            <path>matlab/scripts/initialization</path>
+        </reference>
+        <reference>
+            <path>matlab/scripts/analysis</path>
+        </reference>
+        <reference>
+            <path>matlab/scripts/utilities</path>
+        </reference>
+        <reference>
+            <path>matlab/functions/motor_control</path>
+        </reference>
+        <reference>
+            <path>matlab/functions/acc_logic</path>
+        </reference>
+        <reference>
+            <path>matlab/functions/vehicle_dynamics</path>
+        </reference>
+        <reference>
+            <path>simulink/models</path>
+        </reference>
+        <reference>
+            <path>simulink/models/subsystems</path>
+        </reference>
+        <reference>
+            <path>config</path>
+        </reference>
+    </references>
+</MATLABProject>
