@@ -82,3 +82,8 @@ xlabel('Time (s)')
 ylabel('Velocity (m/s)  (response to step input)')
 title('Step response (continuous model)')
 grid on
+%%initia values
+id=0;
+Tref=10;
+
+iq=Tref/(1.5*Zp*phi+(Ld-Lq)*id);
