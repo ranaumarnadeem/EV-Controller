@@ -1,0 +1,43 @@
+System Architecture & Logic Documentation
+1. Control Loop Architecture (Velocity Tracking)
+The primary loop acts as a closed-loop feedback control system designed to simulate the vehicle's dynamic response to a velocity step input.
+Summing Junction (Comparator)
+* Function: Calculates the instantaneous Error Signal e(t).
+e(t) = v_{desired} - v_{measured}
+* Purpose: The error signal drives the control logic. It quantifies the deviation between the setpoint (75 m/s) and the current system state.
+PID Controller (Compensator)
+* Function: Generates the Control Effort (u_{pid}) required to minimize the error signal.
+* Purpose:
+o Proportional (K_p): Provides immediate control action proportional to the error magnitude to improve rise time.
+o Integral (K_i): Eliminates steady-state error caused by the system's inherent damping (drag). Without the integral term, the velocity would settle below the setpoint due to the k_2 drag term.
+o Derivative (K_d): Improves transient stability and reduces overshoot by reacting to the rate of change of the error.
+
+2. Plant Dynamics (Vehicle Model)
+The vehicle physics are modeled as a First-Order Linear Time-Invariant (LTI) system. The governing differential equation is:
+
+Forward Path Gain (k1/m)
+* Value: 0.002 (2/1000).
+* Function: Input Scaling / Force-to-Acceleration Conversion.
+* Purpose: Converts the dimensionless control signal from the PID controller into an equivalent acceleration component (m/s^2), accounting for the vehicle mass (m).
+Feedback Gain (k2/m)
+* Value: 0.1 (100/1000).
+* Function: Damping Coefficient / Linear Drag.
+* Purpose: This inner feedback loop represents the resistive forces acting on the vehicle (air resistance and friction) that are proportional to velocity. It acts as a stabilizing negative feedback, determining the system's natural time constant (t=m/k2=10s).
+Integrator (1/s)
+* Function: State Integration.
+* Purpose: Integrates the net acceleration (dv/dt) over time to derive the system state variable, Velocity (v).
+
+3. Inverse Dynamics & Interface (Output Generation)
+MATLAB Function Block: velocity_to_torque
+* Function: Inverse Dynamics Solver.
+* Purpose: Unlike the simulation loop which models motion, this block calculates the Actuation Demand. It solves the inverse kinetics to determine the specific Torque (Td) the motor must produce to sustain the current kinematic state under the given environmental conditions.
+* Logic:
+It reconstructs the force equation based on Newton's Second Law to solve for Motor Torque (Td):
+.
+Scenario Block (Disturbance Injection)
+* Function: Environmental Parameter / Disturbance Input.
+* Purpose: Injects external load variables (Slope*theta) into the torque calculation. This ensures the Torque Demand (T_d) accounts for gravitational load, allowing the motor controller to perform feedforward gravity compensation.
+
+4. Signal Interface Specification
+This section defines the handoff to the Torque Control Team.
+Signal NameSymbolUnitsDescriptionTorque DemandTdNmThe calculated torque reference setpoint sent to the motor controller current loop.Velocity Statevm/sThe instantaneous velocity of the vehicle.SlopeThetadegThe road grade angle used for gravity compensation.

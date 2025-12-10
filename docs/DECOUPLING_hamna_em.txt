@@ -1,0 +1,86 @@
+DECOUPLING
+
+INTRODUCTION: 
+Permanent Magnet Synchronous Motors (PMSMs) are widely used in electric vehicles due to their high efficiency, torque density, and controllability. However, PMSM dynamics are nonlinear because the d-axis and q-axis currents affect each other. This creates a coupling effect that makes precise torque and flux control difficult.  
+To overcome this, a decoupling block is used. My part of the project implements exactly this decoupling logic.
+
+WHY DECOUPLING IS NEEDED
+? PMSM has two control currents:
+  ? id controls magnetic flux.
+  ? iq controls torque.
+? In an ideal scenario, id and iq should work independently.
+? But in real motors, changing id unintentionally affects iq and vice versa.
+? This coupling leads to errors in torque production and unstable control.
+? Decoupling removes these unwanted cross-interactions.
+
+UNDERSTANDING THE d-q REFERENCE FRAME
+? ABC currents (three-phase) are sinusoidal ? difficult to control.
+? Clarke and Park Transformation convert these into:
+  ? d-axis: aligned with rotor flux.
+  ? q-axis: perpendicular to rotor flux.
+? In dq-frame:
+  ? Motor behaves like a DC system.
+  ? Control becomes simple.
+  ? Flux and torque can be independently regulated.
+
+EQUATIONS BEING IMPLEMENTED
+The PMSM voltage equations in dq-frame:
+vd = Rs * id + Ld * did/dt ? ?s * Lq * iq  
+vq = Rs * iq + Lq * diq/dt + ?s * (Ld * id + í)
+
+The terms highlighted below represent coupling:
+? ? ?s * Lq * iq   ? coupling term in vd  
+? + ?s * Ld * id   ? coupling term in vq  
+? + ?s * í        ? back EMF term in vq  
+
+The PID controller provides linear voltages vdl and vql.  
+The decoupler adds back the missing coupling terms.
+
+MATLAB FUNCTION IMPLEMENTATION
+code:
+function [vd,vq]= decouple(ws,vdl,vql,iq,id)
+Ld = 1e-4;
+Lq = 1e-3;
+phi = 0.23;
+vd = -ws*Lq*iq + vdl*Ld;
+vq = ws*phi + ws*Ld*id + vql*Lq;
+
+
+
+Explanation:
+? ws = electrical speed of PMSM.
+? vdl, vql = linear voltages created by PID controllers.
+? iq, id = currents from motor.
+? Ld, Lq = inductances.
+? í = permanent magnet flux.
+What the function does:
+1. Computes vd coupling term: ?? * Lq * iq
+2. Computes vq coupling terms: ?í + ? * Ld * id
+3. Adds them to the linear voltages.
+4. Outputs corrected voltages vd and vq.
+BLOCK DIAGRAM FLOW (SUBSYSTEM)
+
+Inputs:
+? ws (speed)
+? VdqLin (linear voltages: vdl, vql)
+? Idq (currents: id, iq)
+Steps:
+1. Demux VdqLin ? vdl & vql  
+2. Demux Idq ? id & iq  
+3. MATLAB Function ?decouple? computes:
+   ? corrected vd  
+   ? corrected vq  
+4. Mux ? final Vdq vector  
+5. Output to PMSM block  
+
+WHY THIS BLOCK IS IMPORTANT
+? Ensures torque produced = torque demanded.
+? Removes unwanted motor dynamics.
+? Makes control smooth, stable, predictable.
+? Allows EV to accelerate/decelerate safely.
+? Essential for field-oriented control (FOC).
+
+
+
+
+

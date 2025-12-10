@@ -1,0 +1,63 @@
+The Motor Pid:
+The motor pid controls the provision of the required torque.The driver pushes the pedal increasing the acceleration, increasing the need of the torque required.
+Abc frame of reference:
+The abc frame of reference provides 3 sinusoidal representations for the 3 phases, which is very difficult to deal with while performing logic-based control. Therefore, mathematically, this can be made easier by converting the frame into different representations.
+d-q:
+This frame rotates along with the rotor with the same speed i.e. the synchronous speed, hence acting like a DC from the rotors reference. It has 2 currents defining 2 control signals. Ieq for controlling the amount of the torque that the motor produces. Id controls the amount of the flux to be produced by the stator.
+
+The motor Pid control:
+The motor pid controls the motor by providing the required amount of the clean voltages, ved and veq which, after being coupled through the decoupler block, go to the actual PMSM block for the motor control. It has 2 PID controllers which force the currents to our required values and convert them into the voltages for the PMSM.
+DEMUX:
+Idq = [ id ; iq ]
+Demux gets the present input current vector signal and breaks the vector into 2 scalar currents id ,iq.
+
+Id=controls the flux production of the rotor(in our case, we have a permanent magnet, so flux is constant).
+the control for the required amount of the torque.
+
+PID1(control for the Id):
+Id*=reference id taken as 0, as our flux is already fixed.
+The actual current calculated from the motor currents ia,ib,ic.
+The PID takes both the currents and applies the difference on them.
+ 
+Forces the difference to 0 to force the actual Id close to 0 and produces the d axis voltage Vd.
+
+
+
+
+PID2(control for the Iq):
+Iq*=The iq calculated from the torque equation :
+
+The torque is received from the outer control (cruise control) (the required torque).
+
+Iq=The present stator current in the motor calculated from the ia,ib,ic.
+The PID takes both the currents and applies the difference.
+
+Forces the iq to be equal to iq* to produce the required vq.
+
+
+
+MUX:
+The mux at the end again converts the 2 separate voltages into one vector form 
+[ v_d , v_q ]
+But it should be kept in mind that these voltages aren’t coupled yet, when the PIDs force them to the reference currents, it completely ignores the coupling between the 2 currents iq and iq(which in reality affect each other), so these voltages must be coupled together to add in the coupling terms.
+
+
+THE MOTOR PID CONTROL:
+
+
+
+
+
+
+PID CONTROLLER:
+The pid controls the motor by providing a voltage output to the pmsm,Now the pid has continuous signal provision that depends on a time signal.The pid works by 2 controlling terms The p term and the I term , in our case we take the D term to be 0.
+
+P=proportional error correction(instant error correction)
+I=integrated error correction(steady state error correction)
+D=derivative
+The Kp = av= 0.677
+Ki= (Rs/Ld)*av= 3.220
+Rs= 0.00475
+Ld= 1.0e-03
+
+Wc=how fast the current responds
