@@ -1,5 +1,5 @@
 % Cleaned & corrected script
-m = 1992;
+m = 1000;
 Reff = 0.2413;
 ig = 9;
 CR = 0.0004;
@@ -12,6 +12,11 @@ Zp = 3;
 phi = 0.23;
 Tmax = 420;
 Tmin = 0;
+
+eta_dt = 1;          % drivetrain efficiency
+k2     = 100;        % linear drag coefficient (N·s/m)
+a_f    = 100;        % rolling/friction force (N)
+Kp     = 1.0;        % velocity-to-acceleration proportional gain
 
 %% Motor parameters (kept for later use)
 Ld = 1e-4;
