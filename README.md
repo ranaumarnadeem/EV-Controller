@@ -16,13 +16,13 @@ The system is designed to optimize energy efficiency, enhance driving safety, an
 
 ## Team Members
 
-| Name | Student ID | Role |
-|------|------------|------|
-| Urva Ali | - | Control Systems Design |
-| Maryam Imran | - | Motor Control Implementation |
-| Hanna Imran | - | Cruise Control Development |
-| Rana Umar Nadeem | - | ACC & Integration |
-| Ali Sher | - | Testing & Validation |
+| Name | Student ID | Responsibilities |
+|------|------------|------------------|
+| Rana Umar Nadeem (Umar) | - | Cruise Control Development |
+| Maryam Imran | - | Torque Control Implementation |
+| Urva Ali | - | Torque Control & Final Integration |
+| Hanna Imran (Hamna) | - | Decoupler Design |
+| Ali Sher | - | PMSM Motor Modeling & Control |
 
 **Institution**: National University of Sciences and Technology (NUST) - School of Electrical Engineering and Computer Science (SEECS)
 
@@ -31,7 +31,9 @@ The system is designed to optimize energy efficiency, enhance driving safety, an
 ```
 ev-controller-project/
 ├── docs/                          # Documentation files
-│   ├── project-proposal.pdf       # Initial project proposal
+│   ├── Cruise Control Doc.docx    # Cruise control documentation
+│   ├── Motor Pid.docx             # Motor PID control documentation
+│   ├── DECOUPLING_hamna_em.docx   # Decoupler design documentation
 │   ├── requirements.md            # System requirements specification
 │   ├── design-specifications.md   # Detailed design documentation
 │   └── presentations/             # Project presentations
@@ -41,7 +43,8 @@ ev-controller-project/
 │   │   ├── initialization/        # Parameter initialization scripts
 │   │   │   ├── init_parameters.m
 │   │   │   ├── init_vehicle_dynamics.m
-│   │   │   └── init_motor_params.m
+│   │   │   ├── init_motor_params.m
+│   │   │   └── PMSM_init.m        # PMSM motor initialization
 │   │   ├── analysis/              # Analysis and plotting scripts
 │   │   │   ├── analyze_performance.m
 │   │   │   ├── plot_results.m
@@ -59,17 +62,13 @@ ev-controller-project/
 │       └── results/               # Simulation results
 │
 ├── simulink/                      # Simulink models
+│   ├── PMSM.slx                   # PMSM motor model
+│   ├── motor_pid.slx              # Motor PID control
+│   ├── cruise_control.slx         # Cruise control system
+│   ├── IntegratedpmsmmotorofEV.slx # Integrated EV system
 │   ├── models/                    # Main and subsystem models
-│   │   ├── ev_controller_main.slx # Top-level system model
-│   │   ├── subsystems/            # Individual subsystem models
-│   │   │   ├── motor_controller.slx
-│   │   │   ├── cruise_control.slx
-│   │   │   ├── adaptive_cruise.slx
-│   │   │   ├── vehicle_dynamics.slx
-│   │   │   └── sensor_models.slx
-│   │   └── libraries/             # Custom block libraries
-│   │       ├── custom_blocks.mdl
-│   │       └── reusable_components.mdl
+│   │   └── ev_controller_main.slx # Top-level system model
+│   ├── subsystems/                # Individual subsystem models
 │   └── reports/                   # Auto-generated reports
 │       ├── model_reports/
 │       └── code_metrics/
@@ -150,16 +149,20 @@ openProject('project.prj')
    run('matlab/scripts/initialization/init_parameters.m')
    run('matlab/scripts/initialization/init_vehicle_dynamics.m')
    run('matlab/scripts/initialization/init_motor_params.m')
+   run('matlab/scripts/initialization/PMSM_init.m')  % PMSM motor parameters
    ```
 
 2. **Open Main Simulink Model**
    ```matlab
-   open_system('simulink/models/ev_controller_main.slx')
+   open_system('simulink/cruise_control.slx')  % Cruise Control Model
+   open_system('simulink/motor_pid.slx')       % Motor PID Control
+   open_system('simulink/PMSM.slx')            % PMSM Motor Model
+   open_system('simulink/IntegratedpmsmmotorofEV.slx')  % Integrated System
    ```
 
 3. **Run Simulation**
    - Click the "Run" button in Simulink, or
-   - Use MATLAB command: `sim('ev_controller_main')`
+   - Use MATLAB command: `sim('cruise_control')`
 
 4. **Analyze Results**
    ```matlab
@@ -173,18 +176,37 @@ openProject('project.prj')
 % Complete simulation workflow
 setup_project;                                          % Setup environment
 init_parameters;                                        % Initialize parameters
-sim('simulink/models/ev_controller_main');             % Run simulation
+init_vehicle_dynamics;                                  % Vehicle parameters
+init_motor_params;                                      % Motor parameters
+PMSM_init;                                              % PMSM initialization
+sim('cruise_control');                                  % Run cruise control simulation
 analyze_performance;                                    % Analyze results
 plot_results;                                           % Visualize results
 ```
 
 ## Project Goals
 
-1. **Motor Control**: Implement efficient torque and speed control for electric motors
-2. **Cruise Control**: Develop robust speed maintenance system
-3. **Adaptive Cruise Control**: Design intelligent distance-keeping system with sensor fusion
-4. **Energy Efficiency**: Optimize overall system for maximum range
-5. **Safety**: Ensure fail-safe operation and emergency handling
+1. **PMSM Motor Control**: Implement efficient PMSM motor control with torque regulation (Ali Sher)
+2. **Torque Control**: Develop robust torque control strategies and decoupling (Maryam & Urva)
+3. **Cruise Control**: Develop speed maintenance system (Rana Umar Nadeem)
+4. **Decoupler**: Design field-weakening and decoupling mechanism (Hanna Imran)
+5. **Integration**: Integrate all subsystems into unified EV controller (Urva Ali)
+
+## Simulink Models
+
+The project includes the following Simulink models:
+
+- **`PMSM.slx`** - Permanent Magnet Synchronous Motor model
+- **`motor_pid.slx`** - Motor PID control implementation
+- **`cruise_control.slx`** - Cruise control system
+- **`IntegratedpmsmmotorofEV.slx`** - Integrated EV motor system
+
+## Key Initialization Files
+
+- **`PMSM_init.m`** - PMSM motor parameters and initialization
+- **`init_motor_params.m`** - General motor parameters
+- **`init_parameters.m`** - System-wide parameters
+- **`init_vehicle_dynamics.m`** - Vehicle dynamics modeling
 
 ## Development Guidelines
 
@@ -277,5 +299,6 @@ For questions or collaboration opportunities, please contact:
 
 ---
 
-**Last Updated**: November 2025
-**Version**: 1.0.0
+**Last Updated**: December 2025
+**Version**: 1.1.0
+**Status**: Active Development
