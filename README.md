@@ -4,6 +4,10 @@
 [![Simulink](https://img.shields.io/badge/Simulink-R2023b%2B-blue.svg)](https://www.mathworks.com/products/simulink.html)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
+## 📚 Documentation
+
+**[Access documentation here](https://ranaumarnadeem.github.io/EV-Controller/)**
+
 ## Project Overview
 
 This repository contains the MATLAB/Simulink implementation of an advanced Electric Vehicle (EV) Controller system. The project integrates three key control systems:
