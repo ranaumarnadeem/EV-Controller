@@ -1,4 +1,17 @@
+---
+layout: default
+title: Cruise Control
+---
+
 # Cruise Control System
+
+**Navigation:**
+- [Home](index.md)
+- [Cruise Control](cruise-control.md)
+- [Motor PID Control](motor-pid.md)
+- [Decoupling Mechanism](decoupling.md)
+
+---
 
 **Developed by**: Rana Umar Nadeem
 

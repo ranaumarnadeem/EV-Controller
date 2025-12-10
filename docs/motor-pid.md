@@ -1,4 +1,17 @@
+---
+layout: default
+title: Motor PID Control
+---
+
 # Motor PID Control
+
+**Navigation:**
+- [Home](index.md)
+- [Cruise Control](cruise-control.md)
+- [Motor PID Control](motor-pid.md)
+- [Decoupling Mechanism](decoupling.md)
+
+---
 
 **Developed by**: Maryam Imran & Urva Ali
 

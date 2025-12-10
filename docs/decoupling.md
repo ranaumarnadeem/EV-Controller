@@ -1,4 +1,17 @@
+---
+layout: default
+title: Decoupling Mechanism
+---
+
 # Decoupling Mechanism
+
+**Navigation:**
+- [Home](index.md)
+- [Cruise Control](cruise-control.md)
+- [Motor PID Control](motor-pid.md)
+- [Decoupling Mechanism](decoupling.md)
+
+---
 
 **Developed by**: Hanna Imran
 

@@ -1,4 +1,17 @@
+---
+layout: default
+title: Home
+---
+
 # EV Controller System Documentation
+
+**Navigation:**
+- [Home](index.md)
+- [Cruise Control](cruise-control.md)
+- [Motor PID Control](motor-pid.md)
+- [Decoupling Mechanism](decoupling.md)
+
+---
 
 Welcome to the comprehensive documentation for the **Electric Vehicle Controller Project** developed at NUST-SEECS.
 

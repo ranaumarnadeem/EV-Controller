@@ -1,0 +1,36 @@
+title: EV Controller Documentation
+description: Advanced Electric Vehicle Controller System - MATLAB/Simulink Implementation
+theme: jekyll-theme-cayman
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Cruise Control
+    url: /cruise-control
+  - title: Motor PID Control
+    url: /motor-pid
+  - title: Decoupling Mechanism
+    url: /decoupling
+
+# Enable relative links
+relative_links:
+  enabled: true
+  collections: false
+
+# Plugins
+plugins:
+  - jekyll-relative-links
+  - jekyll-seo-tag
+
+# Repository information
+repository: ranaumarnadeem/EV-Controller
+
+# Social links
+github_username: ranaumarnadeem
+
+# Build settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
