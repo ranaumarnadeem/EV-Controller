@@ -70,11 +70,6 @@ ssys = ss(sys);
 Ts = 0.01;           % sampling time for discretization [s] (adjust as needed)
 sysd = c2d(ssys, Ts);
 
-% show systems
-disp('Continuous transfer function G(s):')
-sys
-disp('Discrete state-space (sampled at Ts):')
-sysd
 
 %% Optional: simulate a step input (torque command) to check response
 tSim = 0:Ts:10;                    % simulate 10 seconds
