@@ -29,6 +29,8 @@ The cruise control system is the outer control loop responsible for velocity tra
 
 The system implements a **closed-loop feedback control** architecture:
 
+![Cruise Control Flowchart](images/cruise-control-flowchart.png)
+
 ```
 ┌──────────────┐
 │   Desired    │

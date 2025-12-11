@@ -305,6 +305,8 @@ vq = vql * Lq + ws * phi + ws * Ld * id;
 
 ### Simulink Subsystem Structure
 
+![Decoupler Block Diagram](images/decoupler.png)
+
 ```
 ┌─────────────────────────────────────────────────┐
 │          Decoupling Subsystem                   │

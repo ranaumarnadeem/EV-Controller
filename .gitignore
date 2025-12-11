@@ -128,3 +128,8 @@ htmlcov/
 
 # Git merge files
 *.orig
+
+# Documentation source files
+*.txt
+*.docx
+*.doc

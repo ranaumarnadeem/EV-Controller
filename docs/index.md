@@ -42,6 +42,8 @@ This project implements a complete electric vehicle control system using MATLAB/
 
 The EV Controller system consists of three main subsystems working together:
 
+![System Flowchart](images/system-flowchart.png)
+
 ```
 ┌─────────────────────────────────────────────────┐
 │           Cruise Control System                  │

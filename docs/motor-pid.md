@@ -110,6 +110,8 @@ Where:
 
 ## System Architecture
 
+![Motor PID Control Flowchart](images/motor-pid-flowchart.png)
+
 ```
                     ┌─────────────┐
     Torque Demand   │  Torque to  │     iq*

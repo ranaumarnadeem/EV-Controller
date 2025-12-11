@@ -30,6 +30,27 @@ The system is designed to optimize energy efficiency, enhance driving safety, an
 
 **Institution**: National University of Sciences and Technology (NUST) - School of Electrical Engineering and Computer Science (SEECS)
 
+## System Architecture
+
+![System Overview](docs/images/system-flowchart.png)
+
+The EV Controller integrates three primary control systems:
+
+### 1. Cruise Control System
+![Cruise Control Flowchart](docs/images/cruise-control-flowchart.png)
+
+Maintains desired vehicle speed through PID-based velocity tracking and torque demand generation.
+
+### 2. Motor PID Control
+![Motor PID Flowchart](docs/images/motor-pid-flowchart.png)
+
+Implements dual PID controllers for independent flux (id) and torque (iq) control in the d-q reference frame.
+
+### 3. Decoupling Mechanism
+![Decoupler Block](docs/images/decoupler.png)
+
+Compensates for cross-coupling effects between d-axis and q-axis to ensure precise field-oriented control.
+
 ## Repository Structure
 
 ```
