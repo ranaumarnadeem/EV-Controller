@@ -44,30 +44,7 @@ The EV Controller system consists of three main subsystems working together:
 
 ![System Flowchart](images/system-flowchart.png)
 
-```
-┌─────────────────────────────────────────────────┐
-│           Cruise Control System                  │
-│   (Velocity Tracking & Torque Demand)           │
-└───────────────────┬─────────────────────────────┘
-                    │ Torque Demand (Td)
-                    ▼
-┌─────────────────────────────────────────────────┐
-│           Motor PID Control                      │
-│   (Current Control in d-q Frame)                │
-└───────────────────┬─────────────────────────────┘
-                    │ Linear Voltages (vdl, vql)
-                    ▼
-┌─────────────────────────────────────────────────┐
-│           Decoupling Block                       │
-│   (Field-Oriented Control Compensation)         │
-└───────────────────┬─────────────────────────────┘
-                    │ Coupled Voltages (vd, vq)
-                    ▼
-┌─────────────────────────────────────────────────┐
-│              PMSM Motor                          │
-│   (Permanent Magnet Synchronous Motor)          │
-└─────────────────────────────────────────────────┘
-```
+
 
 ---
 

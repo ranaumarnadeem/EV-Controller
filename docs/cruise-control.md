@@ -31,22 +31,7 @@ The system implements a **closed-loop feedback control** architecture:
 
 ![Cruise Control Flowchart](images/cruise-control-flowchart.png)
 
-```
-┌──────────────┐
-│   Desired    │
-│   Velocity   │
-│   (75 m/s)   │
-└──────┬───────┘
-       │
-       ▼
-    ┌──────┐      ┌─────────┐     ┌─────────────┐     ┌──────────┐
-    │  Σ   │─────→│   PID   │────→│ Vehicle     │────→│ Velocity │
-    │      │      │Controller│     │  Dynamics   │     │  Output  │
-    └──┬───┘      └─────────┘     └─────────────┘     └────┬─────┘
-       ▲                                                     │
-       │                       Feedback                      │
-       └─────────────────────────────────────────────────────┘
-```
+
 
 ---
 

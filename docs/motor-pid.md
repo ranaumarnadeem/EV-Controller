@@ -112,35 +112,6 @@ Where:
 
 ![Motor PID Control Flowchart](images/motor-pid-flowchart.png)
 
-```
-                    ┌─────────────┐
-    Torque Demand   │  Torque to  │     iq*
-    (from Cruise) ──→│   Current   │────────┐
-                    │ Conversion  │        │
-                    └─────────────┘        │
-                                           ▼
-    ┌──────────────────────────────────────────────────┐
-    │              DEMUX                                │
-    │   Idq → [id, iq]                                 │
-    └──────────┬───────────────────────┬────────────────┘
-               │                       │
-         ┌─────▼──────┐          ┌─────▼──────┐
-         │   PID 1    │          │   PID 2    │
-         │            │          │            │
-    id*─→│  (id ctrl) │─→ vd_lin │  (iq ctrl) │─→ vq_lin
-    0    │            │          │            │
-         └────────────┘          └─────────────┘
-                │                       │
-                └───────────┬───────────┘
-                            ▼
-                    ┌──────────────┐
-                    │     MUX      │
-                    │ [vd, vq]     │
-                    └──────┬───────┘
-                           │
-                           ▼
-                   To Decoupler Block
-```
 
 ---
 
